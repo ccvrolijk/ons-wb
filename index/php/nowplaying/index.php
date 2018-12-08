@@ -1,0 +1,14 @@
+<?php
+$data = new DOMDocument(); $data->load('http://media2.onswestbrabant.nl:8000/OWBLiveMP3.xspf'); 
+
+if($data->load("http://media2.onswestbrabant.nl:8000/OWBLiveMP3.xspf")) { 
+    foreach ($data->getElementsByTagName('trackList') as $track) { 
+        $title = $track->getElementsByTagName('title')->item(0)->nodeValue;
+
+		$seperated = explode(' - ', $title);
+
+       echo '<a class="alink" target="_new" class="nowplaying" href="https://duckduckgo.com/?q='.urlencode($title).'">Titel: '.$seperated[0].'<br>Artiest: '.$seperated[1].'</a>';
+      // echo '<a class="alink" target="_new" class="nowplaying" href="https://duckduckgo.com/?q='.urlencode($title).'">'.urlencode($title).'</a>';
+    } 
+  }
+  ?>
